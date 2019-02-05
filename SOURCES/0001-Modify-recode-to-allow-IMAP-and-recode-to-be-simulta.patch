@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Cory McIntire <cory@cpanel.net>
+Date: Fri, 2 Mar 2018 11:01:25 -0600
+Subject: [PATCH 1/9] Modify recode to allow IMAP and recode to be
+ simultaneously used
+
+---
+ ext/recode/config9.m4 | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/ext/recode/config9.m4 b/ext/recode/config9.m4
+index 66df50e2..4a3cd547 100644
+--- a/ext/recode/config9.m4
++++ b/ext/recode/config9.m4
+@@ -4,13 +4,6 @@ dnl
+ 
+ dnl Check for extensions with which Recode can not work
+ if test "$PHP_RECODE" != "no"; then
+-  test "$PHP_IMAP"  != "no" && recode_conflict="$recode_conflict imap"
+-
+-  if test -n "$MYSQL_LIBNAME"; then
+-    PHP_CHECK_LIBRARY($MYSQL_LIBNAME, hash_insert, [
+-      recode_conflict="$recode_conflict mysql"
+-    ])
+-  fi
+ 
+   if test -n "$recode_conflict"; then
+     AC_MSG_ERROR([recode extension can not be configured together with:$recode_conflict])
