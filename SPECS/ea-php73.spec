@@ -2,7 +2,7 @@
 # NOTE: pkg variable is a hack to fix invalid macro inside of macros.php
 %global ns_name ea
 %global ns_dir /opt/cpanel
-%global pkg php72
+%global pkg php73
 
 # Force Software Collections on
 %global _scl_prefix %{ns_dir}
@@ -22,7 +22,7 @@
 %global _hardened_build 1
 
 # version used for php embedded library soname
-%global embed_version 7.2
+%global embed_version 7.3
 
 # Ugly hack. Harcoded values to avoid relocation.
 %global _httpd_mmn         %(cat %{_root_includedir}/apache2/.mmn 2>/dev/null || echo missing-ea-apache24-devel)
@@ -142,7 +142,7 @@ Summary:  PHP DSO
 %endif
 Vendor:   cPanel, Inc.
 Name:     %{?scl_prefix}php
-Version:  7.2.10
+Version:  7.3.1
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4588 for more details
 %define release_prefix 1
 Release:  %{release_prefix}%{?dist}.cpanel
@@ -935,7 +935,7 @@ inside them.
 %patch106 -p1 -b .systzdata
 %patch200 -p1 -b .fpmepoll
 
-# 7.2 does not need this for tidy even thought the instructions say to do it, weird ...
+# 7.3 does not need this for tidy even thought the instructions say to do it, weird ...
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
 
 # Deal with autoconf causing build errors
@@ -1339,9 +1339,9 @@ unset NO_INTERACTION REPORT_EXIT_STATUS MALLOC_CHECK_
 
 # Make the eaphp## symlinks
 install -d $RPM_BUILD_ROOT/usr/local/bin
-ln -sf /opt/cpanel/ea-php72/root/usr/bin/php $RPM_BUILD_ROOT/usr/local/bin/ea-php72
+ln -sf /opt/cpanel/ea-php73/root/usr/bin/php $RPM_BUILD_ROOT/usr/local/bin/ea-php73
 install -d $RPM_BUILD_ROOT/usr/bin
-ln -sf /opt/cpanel/ea-php72/root/usr/bin/php-cgi $RPM_BUILD_ROOT/usr/bin/ea-php72
+ln -sf /opt/cpanel/ea-php73/root/usr/bin/php-cgi $RPM_BUILD_ROOT/usr/bin/ea-php73
 
 %if %{with_embed}
 # Install the version for embedded script language in applications + php_embed.h
@@ -1664,8 +1664,8 @@ fi
 %defattr(-,root,root)
 %{_bindir}/php
 # Add the ea-php## symlinks
-/usr/bin/ea-php72
-/usr/local/bin/ea-php72
+/usr/bin/ea-php73
+/usr/local/bin/ea-php73
 %{_bindir}/php-cgi
 %{_bindir}/phar.phar
 %{_bindir}/phar
@@ -1794,104 +1794,5 @@ fi
 
 
 %changelog
-* Thu Sep 13 2018 Cory McIntire <cory@cpanel.net> - 7.2.10-1
-- Updated to version 7.2.10 via update_pkg.pl (EA-7837)
-
-* Sun Aug 19 2018 Cory McIntire <cory@cpanel.net> - 7.2.9-1
-- Updated to version 7.2.9 via update_pkg.pl (EA-7781)
-
-* Wed Jul 23 2018 Tim Mullin <tim@cpanel.net> - 7.2.8-2
-- Fixed php-fpm installing directories it does not own (EA-7526)
-
-* Thu Jul 19 2018 Cory McIntire <cory@cpanel.net> - 7.2.8-1
-- Updated to version 7.2.8 via update_pkg.pl (EA-7703)
-
-* Mon Jun 25 2018 Cory McIntire <cory@cpanel.net> - 7.2.7-1
-- Updated to version 7.2.7 via update_pkg.pl (EA-7595)
-
-* Tue Jun 5 2018 Rishwanth Yeddula <rish@cpanel.net> - 7.2.6-2
-- EA-7359: Ensure ea-libxml2 is listed as a requirement for the php-xml package.
-
-* Fri May 25 2018 Cory McIntire <cory@cpanel.net> - 7.2.6-1
-- Updated to version 7.2.6 via update_pkg.pl (EA-7510)
-
-* Thu Apr 26 2018 Cory McIntire <cory@cpanel.net> - 7.2.5-1
-- Updated to version 7.2.5 via update_pkg.pl (EA-7430)
-
-* Wed Apr 18 2018 Rishwanth Yeddula <rish@cpanel.net> - 7.2.4-3
-- ZC-3605: Update litespeed to the latest version (7.1).
-
-* Mon Apr 16 2018 Rishwanth Yeddula <rish@cpanel.net> - 7.2.4-2
-- EA-7382: Update dependency on ea-openssl to require the latest version with versioned symbols.
-
-* Mon Apr 02 2018 Daniel Muey <dan@cpanel.net> - 7.2.4-1
-- EA-7343: Update to v7.2.4, drop v7.2.3
-
-* Tue Mar 20 2018 Cory McIntire <cory@cpanel.net> - 7.2.3-3
-- ZC-3552: Added versioning to ea-openssl and ea-libcurl requirements.
-
-* Tue Mar 06 2018 Daniel Muey <dan@cpanel.net> - 7.2.3-2
-- ZC-3475: Update for ea-openssl shared object
-
-* Thu Mar 01 2018 Daniel Muey <dan@cpanel.net> - 7.2.3-1
-- Updated to version 7.2.3 via update_pkg.pl (EA-7289)
-
-* Fri Feb 02 2018 Daniel Muey <dan@cpanel.net> - 7.2.2-1
-- Updated to version 7.2.2 via update_pkg.pl (EA-7208)
-
-* Fri Jan 19 2018 <darren@cpanel.net> - 7.2.1-5
-- HB-3287: Increase open file limit for php-fpm by default
-
-* Fri Jan 12 2018 <darren@cpanel.net> - 7.2.1-4
-- HB-3263: Ensure securetmp is done before starting FPM
-
-* Thu Jan 11 2018 Cory McIntire <cory@cpanel.net> - 7.2.1-3
-- EA-7044: Adjust PHPs to use ea-libxml2
-
-* Tue Jan 09 2018 <julian.brown@cpanel.net> - 7.2.1-2
-- HB-3061: Fix epoll bug.
-
-* Fri Jan 05 2018 Jacob Perkins <jacob.perkins@cpanel.net> - 7.2.1-1
-- Updated to version 7.2.1 via update_pkg.pl (EA-7074)
-
-* Wed Dec 06 2017 <dan@cpanel.net> - 7.2.0-13
-- EA-6764: Add back systzdata now that they have a 7.2 version
-
-* Mon Dec 04 2017 <cory@cpanel.net> - 7.2.0-12
-- EA-6992: Update 7.2.0 dropping from RC status
-
-* Mon Nov 27 2017 <cory@cpanel.net> - 7.2.0-11.RC6
-- EA-3099: Update 7.2.0 from RC5 to RC6
-
-* Mon Nov 06 2017 <dan@cpanel.net> - 7.2.0-10.RC5
-- EA-6812: build PHP against ea-openssl like Apache
-
-* Fri Oct 27 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 7.2.0-9.RC5
-- EA-6923: Update 7.2.0 from RC3 to RC5
-
-* Wed Oct 18 2017 Dan Muey <dan@cpanel.net> - 7.2.0-8.RC3
-- EA-6866: Update mail-header patch for segfaults under Apache
-
-* Sat Oct 14 2017 <cory@cpanel.net> - 7.2.0-7.RC3
-- EA-4653: Update mail header patch for PHP 7.2
-
-* Fri Oct 13 2017 Tim Mullin <tim@cpanel.net> - 7.2.0-6.RC3
-- HB-2873: Added network-online.target to "After" in the service file
-
-* Mon Oct 09 2017 Dan Muey <dan@cpanel.net> - - 7.2.0-5.RC3
-- EA-6819: Patch to support libtidy 5.4.0
-
-* Mon Oct 02 2017  <dan@cpanel.net> - 7.2.0-4.RC3
-- EA-6857: Update 7.2.0 from RC1 to RC3
-
-* Thu Aug 31 2017 <dan@cpanel.net> - 7.2.0-3.RC1
-- EA-6757: Update 7.2.0 from beta3 to RC1
-- fix version specific symlinks
-- remove TZ patch for now (EA-6764 may re-add a version of it)
-- Add patch to fix RC1 bug  https://bugs.php.net/bug.php?id=75149 until the next version
-
-* Wed Aug 30 2017 Dan Muey <dan@cpanel.net> - 7.2.0-2.beta3
-- ZC-2827: Fix SRPM scl definition (thank you to JoyceBabu for bringing this to our attention)
-
-* Tue Aug 22 2017 Dan Muey <dan@cpanel.net> - 7.2.0-1.beta3
-- ZC-2785: Initial packaging
+* Tue Feb 05 2019 Dan Muey <dan@cpanel.net> - 7.3.1-1
+- ZC-4640: Initial packaging
