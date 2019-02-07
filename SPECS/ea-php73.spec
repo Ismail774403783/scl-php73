@@ -207,7 +207,7 @@ BuildRequires: libedit-devel
 BuildRequires: readline-devel
 %endif
 %if %{with_pcre}
-BuildRequires: pcre-devel >= 8.20
+BuildRequires: pcre-devel >= 10.30
 %endif
 BuildRequires: bzip2, perl, libtool >= 1.4.3, gcc-c++
 BuildRequires: libtool-ltdl-devel
