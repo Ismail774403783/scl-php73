@@ -378,7 +378,7 @@ Group: Development/Libraries
 Summary: Files needed for building PHP extensions
 Requires: %{?scl_prefix}php-cli%{?_isa} = %{version}-%{release}, autoconf, automake
 %if %{with_pcre}
-Requires: pcre-devel%{?_isa} >= 8.20
+Requires: pcre2-devel%{?_isa} >= 10.30
 %endif
 
 %description devel
