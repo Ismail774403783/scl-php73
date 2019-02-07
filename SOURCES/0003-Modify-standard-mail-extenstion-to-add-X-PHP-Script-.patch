@@ -1,4 +1,4 @@
-From 135e43d22e31ca001d9900c809a4f2149f441a10 Mon Sep 17 00:00:00 2001
+From 993d0f8b1e24ae68fbec0997be409841ed1953a1 Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:06:08 -0600
 Subject: [PATCH 3/9] Modify standard mail extenstion to add X-PHP-Script

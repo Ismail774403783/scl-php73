@@ -1,4 +1,4 @@
-From 88e0b28381e2a3a4cdc1783fa79b45bb548843a7 Mon Sep 17 00:00:00 2001
+From 59d7a22e38ca59ec8afaf912eaf2122fdae86b9b Mon Sep 17 00:00:00 2001
 From: Kurt Newman <kurt.newman@cpanel.net>
 Date: Fri, 11 Dec 2015 12:18:01 -0600
 Subject: [PATCH 4/9] Removed ZTS support

@@ -1,4 +1,4 @@
-From b422777cea0e0a11376c57d7e96031afbb482f52 Mon Sep 17 00:00:00 2001
+From 18c22321323cff45a629d3effa5fb3e2190da298 Mon Sep 17 00:00:00 2001
 From: Jacob Perkins <jacob.perkins@cpanel.net>
 Date: Mon, 13 Jun 2016 22:35:54 -0500
 Subject: [PATCH 5/9] Ensure that php.d is not scanned when PHPRC is set
