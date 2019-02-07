@@ -1650,7 +1650,6 @@ fi
 %doc CODING_STANDARDS CREDITS EXTENSIONS LICENSE NEWS README*
 %doc Zend/ZEND_* TSRM_LICENSE
 %doc libmagic_LICENSE
-%doc phar_LICENSE
 %doc php.ini-*
 %config(noreplace) %{_sysconfdir}/php.ini
 %dir %{_sysconfdir}/php.d
