@@ -117,15 +117,8 @@
 %global with_systemd 1
 %endif
 
-# RHEL 7 comes with .10.1, and PHP 5.6 requires .11
-# In other words, no version of RHEL supports libzip
-# without patches
-%if 0%{?rhel} < 8
 %global with_libzip  0
-%else
-%global with_libzip  1
-%endif
-%global with_zip     1
+%global with_zip     0
 
 %if 0%{?fedora} < 18 && 0%{?rhel} < 7
 %global db_devel  db4-devel
