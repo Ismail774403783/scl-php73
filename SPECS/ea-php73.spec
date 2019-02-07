@@ -97,7 +97,7 @@
 %global with_enchant   0
 %global with_recode    0
 %endif
-%if 0%{?fedora} >= 17 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 27 || 0%{?rhel} >= 8
 %global with_pcre      1
 %else
 %global with_pcre      0
