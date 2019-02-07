@@ -206,8 +206,10 @@ BuildRequires: libedit-devel
 %else
 BuildRequires: readline-devel
 %endif
-%if %{with_pcre}
-BuildRequires: pcre-devel >= 10.30
+%if %{with_libpcre}
+BuildRequires: pcre2-devel >= 10.30
+%else
+Provides:      Provides: bundled(pcre2) = 10.32
 %endif
 BuildRequires: bzip2, perl, libtool >= 1.4.3, gcc-c++
 BuildRequires: libtool-ltdl-devel
