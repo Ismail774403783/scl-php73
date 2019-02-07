@@ -206,7 +206,7 @@ BuildRequires: libedit-devel
 %else
 BuildRequires: readline-devel
 %endif
-%if %{with_libpcre}
+%if %{with_pcre}
 BuildRequires: pcre2-devel >= 10.30
 %else
 Provides:      Provides: bundled(pcre2) = 10.32
