@@ -943,8 +943,8 @@ inside them.
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
 
 # Deal with autoconf causing build errors
-perl -pi -e 's{2\.69}{2\.63}' build/ax_check_compile_flag.m4 build/buildcheck.sh
-perl -pi -e 's/-lt "69"/-lt "63"/' build/buildcheck.sh
+perl -pi -e 's{2\.6[89]}{2\.63}' build/ax_check_compile_flag.m4 build/buildcheck.sh
+perl -pi -e 's/-lt "6[89]"/-lt "63"/' build/buildcheck.sh
 
 # Fixes for tests
 #%patch300 -p1 -b .datetests
