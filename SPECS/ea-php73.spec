@@ -938,7 +938,7 @@ inside them.
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
 
 # Deal with autoconf causing build errors
-perl -pi -e 's{2\.6[89]}{2\.63}' build/ax_check_compile_flag.m4 build/buildcheck.sh
+perl -pi -e 's{2\.6[89]}{2\.63}' configure build/ax_check_compile_flag.m4 build/buildcheck.sh
 perl -pi -e 's/-lt "6[89]"/-lt "63"/' build/buildcheck.sh
 
 # Fixes for tests
@@ -1081,6 +1081,8 @@ cat `aclocal --print-ac-dir`/libtool.m4 > build/libtool.m4
 %endif
 
 # Regenerate configure scripts (patches change config.m4's)
+# Deal with autoconf causing build errors - again
+perl -pi -e 's{2\.6[456789]}{2\.63}' configure.ac build/ax_check_compile_flag.m4
 touch configure.in
 ./buildconf --force
 
