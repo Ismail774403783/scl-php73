@@ -118,7 +118,7 @@
 %endif
 
 %global with_libzip  0
-%global with_zip     0
+%global with_zip     1
 
 %if 0%{?fedora} < 18 && 0%{?rhel} < 7
 %global db_devel  db4-devel
@@ -1221,6 +1221,7 @@ build --libdir=%{_libdir}/php \
 %endif
       --enable-json=shared \
 %if %{with_zip}
+      --without-libzip \
       --enable-zip=shared \
 %endif
 %if %{with_libzip}
