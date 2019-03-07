@@ -137,7 +137,7 @@ Vendor:   cPanel, Inc.
 Name:     %{?scl_prefix}php
 Version:  7.3.2
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4588 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release:  %{release_prefix}%{?dist}.cpanel
 # All files licensed under PHP version 3.01, except
 # Zend is licensed under Zend
@@ -215,6 +215,12 @@ BuildRequires: systemtap-sdt-devel
 %endif
 BuildRequires: bison
 
+%if 0%{rhel} > 6
+BuildRequires: autoconf
+%else
+BuildRequires: autotools-latest-autoconf
+%endif
+
 
 %if %{with_httpd}
 BuildRequires: ea-apache24-devel
@@ -233,6 +239,11 @@ Requires: ea-apache24-mpm = forked
 
 # For backwards-compatibility, require php-cli for the time being:
 Requires: %{?scl_prefix}php-cli%{?_isa} = %{version}-%{release}
+
+# For C6 we need our autotools installed
+%if 0%{rhel} < 7
+Requires: autotools-latest-autoconf
+%endif
 
 # Don't provides extensions, which are not shared library, as .so
 %{?filter_provides_in: %filter_provides_in %{_libdir}/php/modules/.*\.so$}
@@ -937,9 +948,6 @@ inside them.
 # 7.3 does not need this for tidy even thought the instructions say to do it, weird ...
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
 
-# Deal with autoconf causing build errors
-perl -pi -e 's{2\.6[89]}{2\.63}' configure build/ax_check_compile_flag.m4 build/buildcheck.sh
-perl -pi -e 's/-lt "6[89]"/-lt "63"/' build/buildcheck.sh
 
 # Fixes for tests
 #%patch300 -p1 -b .datetests
@@ -1081,10 +1089,13 @@ cat `aclocal --print-ac-dir`/libtool.m4 > build/libtool.m4
 %endif
 
 # Regenerate configure scripts (patches change config.m4's)
-# Deal with autoconf causing build errors - again
-perl -pi -e 's{2\.6[456789]}{2\.63}' configure.ac build/ax_check_compile_flag.m4
 touch configure.in
+
+%if 0%{rhel} < 7
+scl enable autotools-latest './buildconf --force'
+%else
 ./buildconf --force
+%endif
 
 CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -Wno-pointer-sign"
 export CFLAGS
@@ -1795,5 +1806,8 @@ fi
 
 
 %changelog
+* Tue Mar 05 2019 Cory McIntire <cory@cpanel.net> - 7.3.2-2
+- EA-8226: Update PHP 7.3 build process to use scl autoconf
+
 * Thu Feb 07 2019 Dan Muey <dan@cpanel.net> - 7.3.2-1
 - ZC-4640: Initial packaging
