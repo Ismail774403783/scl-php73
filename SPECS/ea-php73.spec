@@ -240,6 +240,11 @@ Requires: ea-apache24-mpm = forked
 # For backwards-compatibility, require php-cli for the time being:
 Requires: %{?scl_prefix}php-cli%{?_isa} = %{version}-%{release}
 
+# For C6 we need our autotools installed
+%if 0%{rhel} < 7
+Requires: autotools-latest-autoconf
+%endif
+
 # Don't provides extensions, which are not shared library, as .so
 %{?filter_provides_in: %filter_provides_in %{_libdir}/php/modules/.*\.so$}
 %if %{with_httpd}
