@@ -1,7 +1,7 @@
-From 993d0f8b1e24ae68fbec0997be409841ed1953a1 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:06:08 -0600
-Subject: [PATCH 3/9] Modify standard mail extenstion to add X-PHP-Script
+Subject: [PATCH 03/10] Modify standard mail extenstion to add X-PHP-Script
  header
 
 ---
@@ -76,6 +76,3 @@ index ca6ca115..e40e267c 100644
  		if (hdr != NULL) {
  			fprintf(sendmail, "%s\n", hdr);
  		}
--- 
-2.19.1
-

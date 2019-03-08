@@ -1,7 +1,7 @@
-From 59d7a22e38ca59ec8afaf912eaf2122fdae86b9b Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Kurt Newman <kurt.newman@cpanel.net>
 Date: Fri, 11 Dec 2015 12:18:01 -0600
-Subject: [PATCH 4/9] Removed ZTS support
+Subject: [PATCH 04/10] Removed ZTS support
 
 Case EA-3788: This patch removes threaded support in PHP for the
 following reasons:
@@ -36,6 +36,3 @@ index 44dee3fa..52321e9d 100644
    AC_MSG_RESULT(yes)
    PHP_SUBST(APXS)
  else
--- 
-2.19.1
-

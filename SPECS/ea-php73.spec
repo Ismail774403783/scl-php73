@@ -174,10 +174,11 @@ Patch101: 0004-Removed-ZTS-support.patch
 Patch102: 0005-Ensure-that-php.d-is-not-scanned-when-PHPRC-is-set.patch
 Patch104: 0006-FPM-Ensure-docroot-is-in-the-user-s-homedir.patch
 Patch105: 0007-Chroot-FPM-users-with-noshell-and-jailshell.patch
-Patch200: 0008-Patch-epoll.c-per-bug-report-in-upstream.patch
+Patch106: 0008-Patch-epoll.c-per-bug-report-in-upstream.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Patch106: 0009-Add-support-for-use-of-the-system-timezone-database.patch
+Patch107: 0009-Add-support-for-use-of-the-system-timezone-database-.patch
+Patch108: 0010-Add-AUTOCONF-AUTOHEADER-variables-for-C6.patch
 
 BuildRequires: bzip2-devel, %{ns_name}-libcurl >= %{ea_libcurl_ver}, %{ns_name}-libcurl-devel >= %{ea_libcurl_ver}, %{db_devel}
 BuildRequires: pam-devel
@@ -942,8 +943,13 @@ inside them.
 %patch102 -p1 -b .cpanelea4ini
 %patch104 -p1 -b .fpmuserini
 %patch105 -p1 -b .fpmjailshell
-%patch106 -p1 -b .systzdata
-%patch200 -p1 -b .fpmepoll
+%patch106 -p1 -b .fpmepoll
+%patch107 -p1 -b .systzdata
+
+%if 0%{rhel} < 7
+%patch108 -p1 -b .autoconfheader
+%endif
+
 
 # 7.3 does not need this for tidy even thought the instructions say to do it, weird ...
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
@@ -1808,6 +1814,7 @@ fi
 %changelog
 * Thu Mar 07 2019 Cory McIntire <cory@cpanel.net> - 7.3.3-1
 - Updated to version 7.3.3 via update_pkg.pl (EA-8275)
+- Added patch for phpize to handle autotools on C6
 
 * Tue Mar 05 2019 Cory McIntire <cory@cpanel.net> - 7.3.2-2
 - EA-8226: Update PHP 7.3 build process to use scl autoconf
