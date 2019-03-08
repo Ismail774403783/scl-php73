@@ -1,7 +1,7 @@
-From 2544d2baf46b6809c2dd239c9fb2c27835e4f80f Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:12:27 -0600
-Subject: [PATCH 8/9] Patch epoll.c per bug report in upstream.
+Subject: [PATCH 08/10] Patch epoll.c per bug report in upstream.
 
 Case HB-3061-70: Patch epoll.c per bug report in upstream.
 ---
@@ -26,6 +26,3 @@ index e4a3300e..86a416c5 100644
  
  		/* sanity check */
  		if (fpm_globals.parent_pid != getpid()) {
--- 
-2.19.1
-
