@@ -1,7 +1,7 @@
-From 18c22321323cff45a629d3effa5fb3e2190da298 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Jacob Perkins <jacob.perkins@cpanel.net>
 Date: Mon, 13 Jun 2016 22:35:54 -0500
-Subject: [PATCH 5/9] Ensure that php.d is not scanned when PHPRC is set
+Subject: [PATCH 05/10] Ensure that php.d is not scanned when PHPRC is set
 
 Since EasyApache 4 is built with the configuration
 option 'with-config-file-scan-dir', this ensured that php.d was
@@ -36,6 +36,3 @@ index d5d920a8..f5b05141 100644
  		struct dirent **namelist;
  		int ndir, i;
  		zend_stat_t sb;
--- 
-2.19.1
-
