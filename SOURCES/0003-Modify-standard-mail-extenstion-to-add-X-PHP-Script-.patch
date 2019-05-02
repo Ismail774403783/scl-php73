@@ -1,4 +1,4 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 5dee662444e88699d49b4642378fdd1c9a3944ec Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:06:08 -0600
 Subject: [PATCH 03/10] Modify standard mail extenstion to add X-PHP-Script
@@ -9,7 +9,7 @@ Subject: [PATCH 03/10] Modify standard mail extenstion to add X-PHP-Script
  1 file changed, 50 insertions(+)
 
 diff --git a/ext/standard/mail.c b/ext/standard/mail.c
-index ca6ca115..e40e267c 100644
+index ca6ca11..e40e267 100644
 --- a/ext/standard/mail.c
 +++ b/ext/standard/mail.c
 @@ -537,6 +537,52 @@ PHPAPI int php_mail(char *to, char *subject, char *message, char *headers, char
@@ -76,3 +76,6 @@ index ca6ca115..e40e267c 100644
  		if (hdr != NULL) {
  			fprintf(sendmail, "%s\n", hdr);
  		}
+-- 
+2.21.0
+
