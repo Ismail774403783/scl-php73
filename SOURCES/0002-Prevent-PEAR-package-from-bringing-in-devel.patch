@@ -1,7 +1,7 @@
-From 518adbfc84edc0e39e1b136ba8775ef9fe78bb12 Mon Sep 17 00:00:00 2001
+From eac8323a3a6a24406171a41e9b11f2016d8f26c9 Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:03:30 -0600
-Subject: [PATCH 02/10] Prevent PEAR package from bringing in devel
+Subject: [PATCH 02/13] Prevent PEAR package from bringing in devel
 
 Source: https://bugzilla.redhat.com/show_bug.cgi?id=657812
 ---
