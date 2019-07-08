@@ -135,9 +135,9 @@ Summary:  PHP DSO
 %endif
 Vendor:   cPanel, Inc.
 Name:     %{?scl_prefix}php
-Version:  7.3.6
+Version:  7.3.7
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4588 for more details
-%define release_prefix 2
+%define release_prefix 1
 Release:  %{release_prefix}%{?dist}.cpanel
 # All files licensed under PHP version 3.01, except
 # Zend is licensed under Zend
@@ -176,13 +176,13 @@ Patch104: 0006-FPM-Ensure-docroot-is-in-the-user-s-homedir.patch
 Patch105: 0007-Chroot-FPM-users-with-noshell-and-jailshell.patch
 Patch106: 0008-Patch-epoll.c-per-bug-report-in-upstream.patch
 
-Patch400: 0020-PLESK-sig-block-reexec.patch
-Patch401: 0021-PLESK-avoid-child-ignorance.patch
-Patch402: 0022-PLESK-missed-kill.patch
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch107: 0009-Add-support-for-use-of-the-system-timezone-database-.patch
 Patch108: 0010-Add-AUTOCONF-AUTOHEADER-variables-for-C6.patch
+
+Patch400: 0011-0020-PLESK-sig-block-reexec.patch
+Patch401: 0012-0021-PLESK-avoid-child-ignorance.patch
+Patch402: 0013-0022-PLESK-missed-kill.patch
 
 BuildRequires: bzip2-devel, %{ns_name}-libcurl >= %{ea_libcurl_ver}, %{ns_name}-libcurl-devel >= %{ea_libcurl_ver}, %{db_devel}
 BuildRequires: pam-devel
@@ -954,9 +954,9 @@ inside them.
 %patch108 -p1 -b .autoconfheader
 %endif
 
-%patch400 -p1 
-%patch401 -p1 
-%patch402 -p1 
+%patch400 -p1 -b .sigblock
+%patch401 -p1 -b .avoidchildignorance
+%patch402 -p1 -b .missedkill
 
 # 7.3 does not need this for tidy even thought the instructions say to do it, weird ...
 # sed -i 's/buffio.h/tidybuffio.h/' ext/tidy/*.c
@@ -1819,6 +1819,9 @@ fi
 
 
 %changelog
+* Fri Jul 05 2019 Cory McIntire <cory@cpanel.net> - 7.3.7-1
+- EA-8561: Update scl-php73 from v7.3.6 to v7.3.7
+
 * Fri Jun 21 2019 Tim Mullin <tim@cpanel.net> - 7.3.6-2
 - EA-8538: Update litespeed from upstream to 7.4
 
