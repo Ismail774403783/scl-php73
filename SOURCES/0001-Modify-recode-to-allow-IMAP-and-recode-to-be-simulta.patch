@@ -1,4 +1,4 @@
-From f9c92fedffc34e4932c89aef994a8e404dc5089e Mon Sep 17 00:00:00 2001
+From ed0c66e2c08b602354a883f2abcdc008a4b86e6e Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 2 Mar 2018 11:01:25 -0600
 Subject: [PATCH 01/13] Modify recode to allow IMAP and recode to be

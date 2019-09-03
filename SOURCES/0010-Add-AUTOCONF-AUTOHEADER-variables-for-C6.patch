@@ -1,4 +1,4 @@
-From c5c21e0a08af93fe4389376806adad380d34f2c8 Mon Sep 17 00:00:00 2001
+From ac20792e8fb58b732be5119f67c204c34fb4034d Mon Sep 17 00:00:00 2001
 From: Cory McIntire <cory@cpanel.net>
 Date: Fri, 8 Mar 2019 12:48:38 -0600
 Subject: [PATCH 10/13] Add AUTOCONF AUTOHEADER variables for C6
