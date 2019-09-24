@@ -160,10 +160,6 @@ Source11: php-fpm.init
 Source50: 10-opcache.ini
 Source51: opcache-default.blacklist
 
-# Allow us to configure imap and recode at same time, but adjust conflicts
-# to prevent usage at same time.
-Patch7: 0001-Modify-recode-to-allow-IMAP-and-recode-to-be-simulta.patch
-
 # Prevent pear package from dragging in devel, which drags in a lot of
 # stuff for a production machine: https://bugzilla.redhat.com/show_bug.cgi?id=657812
 Patch43: 0002-Prevent-PEAR-package-from-bringing-in-devel.patch
@@ -529,24 +525,6 @@ systems may not work as you expect. In such case, it would be a good
 idea to install the GNU libiconv library. It will most likely end up
 with more consistent results.
 
-%package imap
-Summary: A module for PHP applications that use IMAP
-#Group: Development/Languages
-# All files licensed under PHP version 3.01
-License: PHP
-Provides: %{?scl_prefix}php-imap%{?_isa} = %{version}-%{release}
-Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-Requires: %{?scl_prefix}libc-client%{?_isa}
-Requires: ea-openssl >= %{ea_openssl_ver}
-BuildRequires: krb5-devel%{?_isa}, ea-openssl >= %{ea_openssl_ver}, ea-openssl-devel >= %{ea_openssl_ver}
-BuildRequires: %{?scl_prefix}libc-client-devel%{?_isa}
-Conflicts: %{?scl_prefix}php-recode = %{version}-%{release}
-
-%description imap
-The %{?scl_prefix}php-imap module will add IMAP (Internet Message Access Protocol)
-support to PHP. IMAP is a protocol for retrieving and uploading e-mail
-messages on mail servers. PHP is an HTML-embedded scripting language.
-
 %package ldap
 Summary: A module for PHP applications that use LDAP
 Group: Development/Languages
@@ -883,7 +861,6 @@ Group: System Environment/Libraries
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
 BuildRequires: recode-devel
-Conflicts: %{?scl_prefix}php-imap = %{version}-%{release}
 
 %description recode
 The %{?scl_prefix}php-recode package contains a dynamic shared object that will add
@@ -940,7 +917,6 @@ inside them.
 
 %setup -q -n php-%{version}
 
-%patch7 -p1 -b .recode
 %patch43 -p1 -b .phpize
 %patch100 -p1 -b .cpanelmailheader
 %patch101 -p1 -b .disablezts
@@ -1193,8 +1169,6 @@ build --libdir=%{_libdir}/php \
       --enable-opcache \
       --disable-opcache-file \
       --enable-phpdbg \
-      --with-imap=shared,%{_prefix} \
-      --with-imap-ssl \
       --enable-mbstring=shared \
       --enable-mbregex \
 %if %{with_webp}
@@ -1477,7 +1451,7 @@ install -m 644 %{SOURCE8} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/php-fpm
 %endif
 
 # Generate files lists and stub .ini files for each subpackage
-for mod in pgsql odbc ldap snmp xmlrpc imap \
+for mod in pgsql odbc ldap snmp xmlrpc \
     mysqlnd mysqli pdo_mysql \
     mbstring gd dom xsl soap bcmath dba xmlreader xmlwriter \
     simplexml bz2 calendar ctype exif ftp gettext gmp iconv \
@@ -1776,7 +1750,6 @@ fi
 %files posix -f files.posix
 %files pgsql -f files.pgsql
 %files odbc -f files.odbc
-%files imap -f files.imap
 %files ldap -f files.ldap
 %files snmp -f files.snmp
 %files xml -f files.xml
