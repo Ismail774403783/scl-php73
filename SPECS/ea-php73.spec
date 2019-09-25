@@ -182,8 +182,8 @@ Patch402: 0013-0022-PLESK-missed-kill.patch
 
 BuildRequires: bzip2-devel, %{ns_name}-libcurl >= %{ea_libcurl_ver}, %{ns_name}-libcurl-devel >= %{ea_libcurl_ver}, %{db_devel}
 BuildRequires: pam-devel
-Requires: ea-openssl >= %{ea_openssl_ver}
-BuildRequires: libstdc++-devel, ea-openssl >= %{ea_openssl_ver}, ea-openssl-devel >= %{ea_openssl_ver}, scl-utils-build
+Requires: ea-openssl11 >= %{ea_openssl_ver}
+BuildRequires: libstdc++-devel, ea-openssl11 >= %{ea_openssl_ver}, ea-openssl11-devel >= %{ea_openssl_ver}, scl-utils-build
 # For Argon2 support
 BuildRequires: ea-libargon2-devel
 Requires: ea-libargon2
@@ -531,8 +531,8 @@ Group: Development/Languages
 # All files licensed under PHP version 3.01
 License: PHP
 Requires: %{?scl_prefix}php-common%{?_isa} = %{version}-%{release}
-Requires: ea-openssl >= %{ea_openssl_ver}
-BuildRequires: cyrus-sasl-devel, openldap-devel, ea-openssl >= %{ea_openssl_ver}, ea-openssl-devel >= %{ea_openssl_ver}
+Requires: ea-openssl11 >= %{ea_openssl_ver}
+BuildRequires: cyrus-sasl-devel, openldap-devel, ea-openssl11 >= %{ea_openssl_ver}, ea-openssl11-devel >= %{ea_openssl_ver}
 
 %description ldap
 The %{?scl_prefix}php-ldap package adds Lightweight Directory Access Protocol (LDAP)
@@ -602,7 +602,7 @@ License: PHP
 Requires: %{?scl_prefix}php-pdo%{?_isa} = %{version}-%{release}
 Provides: %{?scl_prefix}php_database = %{version}-%{release}
 Provides: %{?scl_prefix}php-pdo_pgsql = %{version}-%{release}, %{?scl_prefix}php-pdo_pgsql%{?_isa} = %{version}-%{release}
-BuildRequires: krb5-devel, ea-openssl >= %{ea_openssl_ver}, ea-openssl-devel >= %{ea_openssl_ver}, postgresql-devel
+BuildRequires: krb5-devel, ea-openssl11 >= %{ea_openssl_ver}, ea-openssl11-devel >= %{ea_openssl_ver}, postgresql-devel
 
 %description pgsql
 The %{?scl_prefix}php-pgsql package add PostgreSQL database support to PHP.
@@ -1089,8 +1089,8 @@ scl enable autotools-latest './buildconf --force'
 CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -Wno-pointer-sign"
 export CFLAGS
 
-export SNMP_SHARED_LIBADD="-Wl,-rpath=/opt/cpanel/ea-openssl/%{_lib}"
-export CURL_SHARED_LIBADD="-Wl,-rpath=/opt/cpanel/ea-openssl/%{_lib} -Wl,-rpath=/opt/cpanel/ea-brotli/%{_lib}"
+export SNMP_SHARED_LIBADD="-Wl,-rpath=/opt/cpanel/ea-openssl11/%{_lib}"
+export CURL_SHARED_LIBADD="-Wl,-rpath=/opt/cpanel/ea-openssl11/%{_lib} -Wl,-rpath=/opt/cpanel/ea-brotli/%{_lib}"
 
 # Install extension modules in %{_libdir}/php/modules.
 EXTENSION_DIR=%{_libdir}/php/modules; export EXTENSION_DIR
@@ -1134,7 +1134,7 @@ ln -sf ../configure
     --with-gettext \
     --with-iconv \
     --with-jpeg-dir=%{_root_prefix} \
-    --with-openssl=/opt/cpanel/ea-openssl --with-openssl-dir=/opt/cpanel/ea-openssl \
+    --with-openssl=/opt/cpanel/ea-openssl11 --with-openssl-dir=/opt/cpanel/ea-openssl11 \
 %if %{with_pcre}
     --with-pcre-regex=%{_root_prefix} \
 %endif
