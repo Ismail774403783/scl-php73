@@ -374,6 +374,9 @@ Provides: %{?scl_prefix}php-zlib = %{version}-%{release}, %{?scl_prefix}php-zlib
 %{!?scl:Obsoletes: php-openssl, php-pecl-json, php-json, php-pecl-phar, php-pecl-Fileinfo}
 %{?scl:Requires: %{scl}-runtime}
 
+Obsoletes: %{?scl_prefix}php-imap
+Obsoletes: %{?scl_prefix}libc-client
+
 %description common
 The %{?scl_prefix}php-common package contains files used by both
 the %{?scl_prefix}php package and the php-cli package.
@@ -1795,6 +1798,8 @@ fi
 %changelog
 * Tue Sep 24 2019 Daniel Muey <dan@cpanel.net> - 7.3.9-3
 - ZC-4361: Update ea-openssl requirement to v1.1.1 (ZC-5583)
+-          Obsolete deprecated libc-client and php-imap
+-          since they do not support openssl v1.1.1
 
 * Thu Sep 12 2019 Tim Mullin <tim@cpanel.net> - 7.3.9-2
 - EA-8549: Build php-fpm with pcntl
