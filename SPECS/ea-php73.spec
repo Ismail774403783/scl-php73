@@ -135,9 +135,9 @@ Summary:  PHP DSO
 %endif
 Vendor:   cPanel, Inc.
 Name:     %{?scl_prefix}php
-Version:  7.3.9
+Version:  7.3.10
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4588 for more details
-%define release_prefix 2
+%define release_prefix 1
 Release:  %{release_prefix}%{?dist}.cpanel
 # All files licensed under PHP version 3.01, except
 # Zend is licensed under Zend
@@ -1820,6 +1820,9 @@ fi
 
 
 %changelog
+* Fri Sep 27 2019 Cory McIntire <cory@cpanel.net> - 7.3.10-1
+- EA-8672: Update scl-php73 from v7.3.9 to v7.3.10
+
 * Thu Sep 12 2019 Tim Mullin <tim@cpanel.net> - 7.3.9-2
 - EA-8549: Build php-fpm with pcntl
 
