@@ -1,4 +1,4 @@
-From 7d16203ba0b11007858c2ef302cdc619e938b90c Mon Sep 17 00:00:00 2001
+From 84f5c949c6468dd5f84d01f63e5007c6b09a736d Mon Sep 17 00:00:00 2001
 From: Matt Dees <matt@cpanel.net>
 Date: Fri, 19 Aug 2016 10:10:41 -0500
 Subject: [PATCH 07/13] Chroot FPM users with noshell and jailshell
@@ -11,10 +11,10 @@ if their shells are set to noshell or jailshell no matter what.
  2 files changed, 71 insertions(+), 1 deletion(-)
 
 diff --git a/sapi/fpm/fpm/fpm_conf.c b/sapi/fpm/fpm/fpm_conf.c
-index 1389b80..eae4cc2 100644
+index 7a05286..5e2985d 100644
 --- a/sapi/fpm/fpm/fpm_conf.c
 +++ b/sapi/fpm/fpm/fpm_conf.c
-@@ -1028,7 +1028,8 @@ static int fpm_conf_process_all_pools() /* {{{ */
+@@ -1029,7 +1029,8 @@ static int fpm_conf_process_all_pools() /* {{{ */
  
  				spprintf(&buf, 0, "%s/%s", wp->config->chroot, wp->config->chdir);
  
